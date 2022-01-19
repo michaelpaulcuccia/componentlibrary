@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styled from 'styled-components';
 import Header from '../components/header';
+import Banner from '../components/banner';
 
 const AppContainer = styled.div`
   max-width: 1920px;
@@ -11,6 +12,7 @@ const AppContainer = styled.div`
 
 export default function Home() {
   return (
+
     <AppContainer>
       <Head>
         <title>Component Library</title>
@@ -19,6 +21,9 @@ export default function Home() {
       </Head>
 
       <Header />
+      <Banner />
     </AppContainer>
+ 
+
   )
 }
