@@ -33,14 +33,14 @@ export default function header() {
   return(
     <Main>
         <LogoContainer>
-            <Image src={wulogo} />
+            <Logo />
         </LogoContainer>
         <Tab>Home</Tab>
         <Tab>Contact</Tab>
         <Tab>About</Tab>
         <Tab>Support</Tab>
         <LogoContainer>
-            <Logo />
+            Hello World
         </LogoContainer>
     </Main>
   ) 
