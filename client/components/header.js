@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Image from 'next/image';
 import styled from "styled-components";
 import { MdHome, MdMenuBook, MdContactMail, MdContactSupport, MdReadMore, MdPlaylistAddCheck, MdArrowDropDown } from "react-icons/md";
 import * as palette from '../constants/palette';
 import Logo from './logo';
+import helpdesk from '../public/images/help-desk.svg';
 
 const Main = styled.div`
     width: 100%;
@@ -86,9 +88,16 @@ const DownWrapper = styled.span`
 const AboutBox = styled.div`
     height: 200px;
     width: 225px;
-    background-color: black;
+    border-radius: 5px;
+    border: solid 1px ${palette.WUGOLD};
     position: absolute;
     top: 165px;
+
+    .headline {
+        text-shadow: 1px 1px 1px rgba(0,0,0,.45);
+        text-align: center;
+        padding: 5px 0;
+    }
 
     @media (max-width: 1565px){
         width: 200px;
@@ -100,16 +109,73 @@ const AboutBox = styled.div`
     }
 
     @media (max-width: 1050px){
-        right: 275px;
+        right: 300px;
     }
 `;
 
 const SupportBox = styled.div`
-    height: 200px;
     width: 225px;
-    background-color: black;
+    padding: 5px 0;
+    border-radius: 5px;
+    border: solid 1px ${palette.WUGOLD};
     position: absolute;
     top: 165px;
+
+    .headline {
+        text-shadow: 1px 1px 1px rgba(0,0,0,.45);
+        text-align: center;
+        padding: 5px 0;
+    }
+
+    .imageContainer {
+        height: 45px;
+        width: 45px;
+        padding-left: 5px;
+        color: ${palette.WUGOLD};
+    }
+
+    .contentBox {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        padding-top: 5px;
+        font-size: 14px;
+    }
+
+    .existing {
+
+        &-headline {
+            color: ${palette.WUGOLD};
+            text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
+            font-size: 16px;
+        }
+
+        ul {
+            padding-top: 3px;
+            li {
+                padding-top: 2px;
+                padding-left: 3px;
+            }
+        }
+    }
+
+    .potential {
+
+        &-headline {
+            color: ${palette.WUGOLD};
+            text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
+            font-size: 16px;
+            padding-top: 5px;
+        }
+
+        ul {
+            padding-top: 3px;
+            
+        li {
+            padding-top: 2px;
+            padding-left: 3px;
+        }
+    }
+}
 
     @media (max-width: 1565px){
         width: 200px;
@@ -121,7 +187,7 @@ const SupportBox = styled.div`
     }
 
     @media (max-width: 1050px){
-        right: 35px;
+        right: 75px;
     }
 `;
 
@@ -173,7 +239,9 @@ export default function header() {
             </DownWrapper>
             {
                 showAbout &&
-                <AboutBox />
+                <AboutBox>
+                    <div className="headline">OUR TEAM</div>
+                </AboutBox>
             }
         </Tab>
         <Tab>
@@ -188,7 +256,28 @@ export default function header() {
             </DownWrapper>
             {
                 showSupport &&
-                <SupportBox />
+                <SupportBox>
+                    <div className="headline">HOW CAN WE HELP?</div>  
+                    <div className="contentBox">
+                        <div className="imageContainer">
+                            <Image src={helpdesk} />
+                        </div>
+                        <div className="existing">
+                            <p className="existing-headline">Existing Clients</p>
+                            <ul>
+                                <li>accounts receivable</li>
+                                <li>accounts payable</li>
+                                <li>accounts delequint</li>
+                            </ul>
+                            <p className="potential-headline">Potential Clients</p>
+                            <ul>
+                                <li>our services</li>
+                                <li>testimonials</li>
+                                <li>legal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </SupportBox>
             }
         </Tab>
         <EndContainer>
