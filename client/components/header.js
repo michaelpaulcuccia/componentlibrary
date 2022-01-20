@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MdHome, MdMenuBook, MdContactMail, MdContactSupport, MdReadMore, MdPlaylistAddCheck } from "react-icons/md";
+import { MdHome, MdMenuBook, MdContactMail, MdContactSupport, MdReadMore, MdPlaylistAddCheck, MdArrowDropDown } from "react-icons/md";
 import * as palette from '../constants/palette';
 import Logo from './logo';
 
@@ -30,6 +30,11 @@ const Tab = styled.div`
 
     .text {
         padding-top: 10px;
+
+        @media (max-width: 1050px){
+            font-size: 14px;
+        }
+    }
     }
 `;
 
@@ -50,10 +55,29 @@ const IconWrapper = styled.span`
     display: flex;
     align-items: center;
 
-    .text {
+    @media (max-width: 1050px){
+        font-size: 22px;
+    }
+
+    .endText {
         color: black;
         font-size: 16px;
         padding-left: 15px;
+
+        @media (max-width: 1050px){
+            font-size: 12px;
+            padding-left: 10px;
+        }
+    }
+`;
+
+const DownWrapper = styled.span`
+    position: relative;
+    
+    .icon {
+        position: absolute;
+        font-size: 30px;
+        left: -14px;
     }
 `;
 
@@ -86,6 +110,9 @@ export default function header() {
             <p className="text">
                 About
             </p> 
+            <DownWrapper>
+                <MdArrowDropDown className="icon"/>
+            </DownWrapper>
         </Tab>
         <Tab>
             <IconWrapper>
@@ -94,15 +121,18 @@ export default function header() {
             <p className="text">
                 SUPPORT
             </p> 
+            <DownWrapper>
+                <MdArrowDropDown className="icon"/>
+            </DownWrapper>
         </Tab>
         <EndContainer>
             <IconWrapper>
                 <MdReadMore />
-                <span className="text">Learn More About our Faculty</span>
+                <span className="endText">Learn More About our Faculty</span>
             </IconWrapper>
             <IconWrapper>
                 <MdPlaylistAddCheck />
-                <span className="text">Get the latest news</span>
+                <span className="endText">Get the latest news</span>
             </IconWrapper> 
         </EndContainer>
     </Main>
