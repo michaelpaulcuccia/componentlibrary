@@ -154,6 +154,7 @@ const SupportBox = styled.div`
             //clears ALL list-style-types, including those in .potential
             list-style-type: none;
             li {
+                //applies to all li, including those in .potential
                 padding-top: 3px;
                 padding-left: 3px;
                 font-weight: 200;
@@ -165,21 +166,12 @@ const SupportBox = styled.div`
     }
 
     .potential {
-
         &-headline {
             color: ${palette.WUGOLD};
             text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
             font-size: 16px;
             padding-top: 5px;
         }
-
-        /* ul {
-            padding-top: 3px;            
-            li {
-                padding-top: 3px;
-                padding-left: 3px;
-            }
-        } */
     }
 }
 
