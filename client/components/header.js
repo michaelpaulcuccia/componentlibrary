@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MdHome, MdMenuBook, MdContactMail, MdContactSupport, MdReadMore, MdPlaylistAddCheck, MdArrowDropDown } from "react-icons/md";
 import * as palette from '../constants/palette';
@@ -6,6 +7,7 @@ import Logo from './logo';
 const Main = styled.div`
     width: 100%;
     display: flex;
+    position: relative;
     font-family: sans-serif;
 `;
 
@@ -34,7 +36,6 @@ const Tab = styled.div`
         @media (max-width: 1050px){
             font-size: 14px;
         }
-    }
     }
 `;
 
@@ -73,6 +74,7 @@ const IconWrapper = styled.span`
 
 const DownWrapper = styled.span`
     position: relative;
+    cursor: pointer;
     
     .icon {
         position: absolute;
@@ -81,7 +83,63 @@ const DownWrapper = styled.span`
     }
 `;
 
+const AboutBox = styled.div`
+    height: 200px;
+    width: 225px;
+    background-color: black;
+    position: absolute;
+    top: 165px;
+
+    @media (max-width: 1565px){
+        width: 200px;
+        right: 500px;
+    }
+
+    @media (max-width: 1350px){
+        right: 400px;
+    }
+
+    @media (max-width: 1050px){
+        right: 275px;
+    }
+`;
+
+const SupportBox = styled.div`
+    height: 200px;
+    width: 225px;
+    background-color: black;
+    position: absolute;
+    top: 165px;
+
+    @media (max-width: 1565px){
+        width: 200px;
+        right: 275px;
+    }
+
+    @media (max-width: 1350px){
+        right: 175px;
+    }
+
+    @media (max-width: 1050px){
+        right: 35px;
+    }
+`;
+
 export default function header() {
+
+    const [showAbout, setShowAbout] = useState(false);
+    const [showSupport, setShowSupport] = useState(false);
+
+    const handleAboutClick = () => {
+        console.log('about click!');
+        setShowAbout(!showAbout)
+    };
+
+    const handleSupportClick = () => {
+        console.log('support click!');
+        setShowSupport(!showSupport)
+    };
+
   return(
     <Main>
         <LogoContainer>
@@ -110,9 +168,13 @@ export default function header() {
             <p className="text">
                 About
             </p> 
-            <DownWrapper>
+            <DownWrapper onClick={handleAboutClick}>
                 <MdArrowDropDown className="icon"/>
             </DownWrapper>
+            {
+                showAbout &&
+                <AboutBox />
+            }
         </Tab>
         <Tab>
             <IconWrapper>
@@ -121,9 +183,13 @@ export default function header() {
             <p className="text">
                 SUPPORT
             </p> 
-            <DownWrapper>
+            <DownWrapper onClick={handleSupportClick}>
                 <MdArrowDropDown className="icon"/>
             </DownWrapper>
+            {
+                showSupport &&
+                <SupportBox />
+            }
         </Tab>
         <EndContainer>
             <IconWrapper>
