@@ -114,7 +114,7 @@ const AboutBox = styled.div`
 `;
 
 const SupportBox = styled.div`
-    width: 225px;
+    width: 230px;
     padding: 5px 0;
     border-radius: 5px;
     border: solid 1px ${palette.WUGOLD};
@@ -124,7 +124,7 @@ const SupportBox = styled.div`
     .headline {
         text-shadow: 1px 1px 1px rgba(0,0,0,.45);
         text-align: center;
-        padding: 5px 0;
+        padding: 8px 0;
     }
 
     .imageContainer {
@@ -151,9 +151,15 @@ const SupportBox = styled.div`
 
         ul {
             padding-top: 3px;
+            //clears ALL list-style-types, including those in .potential
+            list-style-type: none;
             li {
-                padding-top: 2px;
+                padding-top: 3px;
                 padding-left: 3px;
+                font-weight: 200;
+                &:last-of-type {
+                    padding-bottom: 3px;
+                }
             }
         }
     }
@@ -167,13 +173,13 @@ const SupportBox = styled.div`
             padding-top: 5px;
         }
 
-        ul {
-            padding-top: 3px;
-            
-        li {
-            padding-top: 2px;
-            padding-left: 3px;
-        }
+        /* ul {
+            padding-top: 3px;            
+            li {
+                padding-top: 3px;
+                padding-left: 3px;
+            }
+        } */
     }
 }
 
@@ -267,7 +273,7 @@ export default function header() {
                             <ul>
                                 <li>accounts receivable</li>
                                 <li>accounts payable</li>
-                                <li>accounts delequint</li>
+                                <li>accounts delinquent</li>
                             </ul>
                             <p className="potential-headline">Potential Clients</p>
                             <ul>
