@@ -86,40 +86,31 @@ const DownWrapper = styled.span`
 `;
 
 const AboutBox = styled.div`
-    height: 200px;
-    width: 225px;
+    height: 250px;
+    width: 350px;
     border-radius: 5px;
     border: solid 1px ${palette.WUGOLD};
+    background: ${palette.GRAYSWIRL};
     position: absolute;
     top: 165px;
+    right: 32%;
 
     .headline {
         text-shadow: 1px 1px 1px rgba(0,0,0,.45);
         text-align: center;
-        padding: 5px 0;
-    }
-
-    @media (max-width: 1565px){
-        width: 200px;
-        right: 500px;
-    }
-
-    @media (max-width: 1350px){
-        right: 400px;
-    }
-
-    @media (max-width: 1050px){
-        right: 300px;
+        padding: 8px 0;
     }
 `;
 
 const SupportBox = styled.div`
-    width: 230px;
+    width: 350px;
     padding: 5px 0;
     border-radius: 5px;
     border: solid 1px ${palette.WUGOLD};
+    background: ${palette.GRAYSWIRL};
     position: absolute;
     top: 165px;
+    right: 17%;
 
     .headline {
         text-shadow: 1px 1px 1px rgba(0,0,0,.45);
@@ -128,15 +119,15 @@ const SupportBox = styled.div`
     }
 
     .imageContainer {
-        height: 45px;
-        width: 45px;
-        padding-left: 5px;
+        height: 75px;
+        width: 75px;
+        padding-left: 10px;
         color: ${palette.WUGOLD};
     }
 
     .contentBox {
         display: grid;
-        grid-template-columns: 30% 70%;
+        grid-template-columns: 40% 60%;
         padding-top: 5px;
         font-size: 14px;
     }
@@ -173,20 +164,6 @@ const SupportBox = styled.div`
             padding-top: 5px;
         }
     }
-}
-
-    @media (max-width: 1565px){
-        width: 200px;
-        right: 275px;
-    }
-
-    @media (max-width: 1350px){
-        right: 175px;
-    }
-
-    @media (max-width: 1050px){
-        right: 75px;
-    }
 `;
 
 export default function header() {
@@ -196,11 +173,17 @@ export default function header() {
 
     const handleAboutClick = () => {
         console.log('about click!');
+        if (showSupport) {
+            setShowSupport(false);
+        }
         setShowAbout(!showAbout)
     };
 
     const handleSupportClick = () => {
         console.log('support click!');
+        if (showAbout) {
+            setShowAbout(false);
+        }
         setShowSupport(!showSupport)
     };
 
