@@ -14,12 +14,20 @@ import * as palette from "../constants/palette";
 import Logo from "./logo";
 //import helpdesk from "../public/images/help-desk.svg";
 
+//ORGANISM - 1
+
 const Main = styled.div`
   width: 100%;
   display: flex;
   position: relative;
   font-family: sans-serif;
+
+  @media (max-width: 875px) {
+    flex-direction: column;
+  }
 `;
+
+//MOLECULES - 3
 
 const LogoContainer = styled.div`
   width: 20%;
@@ -29,6 +37,10 @@ const LogoContainer = styled.div`
   align-items: center;
   background: ${palette.GRAYSWIRL};
   color: black;
+
+  @media (max-width: 875px) {
+    width: 100%;
+  }
 `;
 
 const Tab = styled.div`
@@ -39,6 +51,11 @@ const Tab = styled.div`
   align-items: center;
   background: ${palette.GRAYSWIRL};
   color: black;
+
+  @media (max-width: 875px) {
+    width: 100%;
+    padding-bottom: 15px;
+  }
 
   .text {
     padding-top: 10px;
@@ -58,7 +75,15 @@ const EndContainer = styled.div`
   padding-left: 15px;
   background: ${palette.GRAYSWIRL};
   color: black;
+
+  @media (max-width: 875px) {
+    width: 100%;
+    flex-direction: row;
+    padding-top: 5px;
+  }
 `;
+
+//ATOMS - 3
 
 const IconWrapper = styled.span`
   color: ${palette.WUGOLD};
@@ -77,7 +102,6 @@ const IconWrapper = styled.span`
 
     @media (max-width: 1050px) {
       font-size: 14px;
-      //padding-left: 10px;
     }
   }
 `;
@@ -88,6 +112,10 @@ const DownWrapper = styled.span`
 
   &:hover {
     color: ${palette.WUGOLD};
+  }
+
+  @media (max-width: 875px) {
+    display: none;
   }
 
   .icon {
