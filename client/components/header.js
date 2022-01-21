@@ -1,276 +1,206 @@
 import React, { useState } from "react";
-import Image from 'next/image';
+//import Image from "next/image";
 import styled from "styled-components";
-import { MdHome, MdMenuBook, MdContactMail, MdContactSupport, MdReadMore, MdPlaylistAddCheck, MdArrowDropDown } from "react-icons/md";
-import * as palette from '../constants/palette';
-import Logo from './logo';
-import helpdesk from '../public/images/help-desk.svg';
+import {
+  MdHome,
+  MdMenuBook,
+  MdContactMail,
+  MdContactSupport,
+  MdReadMore,
+  MdPlaylistAddCheck,
+  MdArrowDropDown,
+} from "react-icons/md";
+import * as palette from "../constants/palette";
+import Logo from "./logo";
+//import helpdesk from "../public/images/help-desk.svg";
 
 const Main = styled.div`
-    width: 100%;
-    display: flex;
-    position: relative;
-    font-family: sans-serif;
+  width: 100%;
+  display: flex;
+  position: relative;
+  font-family: sans-serif;
 `;
 
 const LogoContainer = styled.div`
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: ${palette.GRAYSWIRL};
-    color: black;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: ${palette.GRAYSWIRL};
+  color: black;
 `;
 
 const Tab = styled.div`
-    width: 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: ${palette.GRAYSWIRL};
-    color: black;   
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: ${palette.GRAYSWIRL};
+  color: black;
 
-    .text {
-        padding-top: 10px;
+  .text {
+    padding-top: 10px;
 
-        @media (max-width: 1050px){
-            font-size: 14px;
-        }
+    @media (max-width: 1050px) {
+      font-size: 14px;
     }
+  }
 `;
 
 const EndContainer = styled.div`
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 15px;
-    background: ${palette.GRAYSWIRL};
-    color: black;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 15px;
+  background: ${palette.GRAYSWIRL};
+  color: black;
 `;
 
 const IconWrapper = styled.span`
-    color: ${palette.WUGOLD};
-    font-size: 28px;
-    display: flex;
-    align-items: center;
+  color: ${palette.WUGOLD};
+  font-size: 28px;
+  display: flex;
+  align-items: center;
 
-    @media (max-width: 1050px){
-        font-size: 22px;
+  @media (max-width: 1050px) {
+    font-size: 22px;
+  }
+
+  .endText {
+    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+
+    @media (max-width: 1050px) {
+      font-size: 14px;
+      //padding-left: 10px;
     }
-
-    .endText {
-        color: black;
-        font-size: 16px;
-        padding-left: 15px;
-
-        @media (max-width: 1050px){
-            font-size: 12px;
-            padding-left: 10px;
-        }
-    }
+  }
 `;
 
 const DownWrapper = styled.span`
-    position: relative;
-    cursor: pointer;
-    
-    .icon {
-        position: absolute;
-        font-size: 30px;
-        left: -14px;
-    }
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    color: ${palette.WUGOLD};
+  }
+
+  .icon {
+    position: absolute;
+    font-size: 30px;
+    left: -14px;
+  }
 `;
 
-const AboutBox = styled.div`
-    height: 250px;
-    width: 350px;
-    border-radius: 5px;
-    border: solid 1px ${palette.WUGOLD};
-    background: ${palette.GRAYSWIRL};
-    position: absolute;
-    top: 165px;
-    right: 32%;
+const Drawer = styled.div`
+  height: 250px;
+  width: 350px;
+  border-radius: 5px;
+  border: solid 1px ${palette.WUGOLD};
+  background: ${palette.GRAYSWIRL};
+  position: absolute;
+  top: 165px;
+  right: 25%;
 
-    .headline {
-        text-shadow: 1px 1px 1px rgba(0,0,0,.45);
-        text-align: center;
-        padding: 8px 0;
-    }
-`;
+  .about {
+    display: flex;
+    justify-content: flex-start;
+    color: blue;
+    padding: 8px 5px;
+  }
 
-const SupportBox = styled.div`
-    width: 350px;
-    padding: 5px 0;
-    border-radius: 5px;
-    border: solid 1px ${palette.WUGOLD};
-    background: ${palette.GRAYSWIRL};
-    position: absolute;
-    top: 165px;
-    right: 17%;
-
-    .headline {
-        text-shadow: 1px 1px 1px rgba(0,0,0,.45);
-        text-align: center;
-        padding: 8px 0;
-    }
-
-    .imageContainer {
-        height: 75px;
-        width: 75px;
-        padding-left: 10px;
-        color: ${palette.WUGOLD};
-    }
-
-    .contentBox {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        padding-top: 5px;
-        font-size: 14px;
-    }
-
-    .existing {
-
-        &-headline {
-            color: ${palette.WUGOLD};
-            text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
-            font-size: 16px;
-        }
-
-        ul {
-            padding-top: 3px;
-            //clears ALL list-style-types, including those in .potential
-            list-style-type: none;
-            li {
-                //applies to all li, including those in .potential
-                padding-top: 3px;
-                padding-left: 3px;
-                font-weight: 200;
-                &:last-of-type {
-                    padding-bottom: 3px;
-                }
-            }
-        }
-    }
-
-    .potential {
-        &-headline {
-            color: ${palette.WUGOLD};
-            text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
-            font-size: 16px;
-            padding-top: 5px;
-        }
-    }
+  .support {
+    display: flex;
+    justify-content: flex-end;
+    color: red;
+    padding: 8px 5px;
+  }
 `;
 
 export default function header() {
+  const [showAbout, setShowAbout] = useState(false);
+  const [showSupport, setShowSupport] = useState(false);
 
-    const [showAbout, setShowAbout] = useState(false);
-    const [showSupport, setShowSupport] = useState(false);
+  const handleAboutClick = () => {
+    console.log("about click!");
+    if (showSupport) {
+      setShowSupport(false);
+    }
+    setShowAbout(!showAbout);
+  };
 
-    const handleAboutClick = () => {
-        console.log('about click!');
-        if (showSupport) {
-            setShowSupport(false);
-        }
-        setShowAbout(!showAbout)
-    };
+  const handleSupportClick = () => {
+    console.log("support click!");
+    if (showAbout) {
+      setShowAbout(false);
+    }
+    setShowSupport(!showSupport);
+  };
 
-    const handleSupportClick = () => {
-        console.log('support click!');
-        if (showAbout) {
-            setShowAbout(false);
-        }
-        setShowSupport(!showSupport)
-    };
-
-  return(
+  return (
     <Main>
-        <LogoContainer>
-            <Logo />
-        </LogoContainer>
-        <Tab>
-            <IconWrapper>
-                <MdHome/>
-            </IconWrapper>     
-            <p className="text">
-                HOME
-            </p>   
-        </Tab>
-        <Tab>
-            <IconWrapper>
-                <MdContactMail />
-            </IconWrapper> 
-            <p className="text">
-                CONTACT
-            </p> 
-        </Tab>
-        <Tab>
-            <IconWrapper>
-                <MdMenuBook />
-            </IconWrapper>
-            <p className="text">
-                About
-            </p> 
-            <DownWrapper onClick={handleAboutClick}>
-                <MdArrowDropDown className="icon"/>
-            </DownWrapper>
-            {
-                showAbout &&
-                <AboutBox>
-                    <div className="headline">OUR TEAM</div>
-                </AboutBox>
-            }
-        </Tab>
-        <Tab>
-            <IconWrapper>
-                <MdContactSupport />
-            </IconWrapper>
-            <p className="text">
-                SUPPORT
-            </p> 
-            <DownWrapper onClick={handleSupportClick}>
-                <MdArrowDropDown className="icon"/>
-            </DownWrapper>
-            {
-                showSupport &&
-                <SupportBox>
-                    <div className="headline">HOW CAN WE HELP?</div>  
-                    <div className="contentBox">
-                        <div className="imageContainer">
-                            <Image src={helpdesk} />
-                        </div>
-                        <div className="existing">
-                            <p className="existing-headline">Existing Clients</p>
-                            <ul>
-                                <li>accounts receivable</li>
-                                <li>accounts payable</li>
-                                <li>accounts delinquent</li>
-                            </ul>
-                            <p className="potential-headline">Potential Clients</p>
-                            <ul>
-                                <li>our services</li>
-                                <li>testimonials</li>
-                                <li>legal</li>
-                            </ul>
-                        </div>
-                    </div>
-                </SupportBox>
-            }
-        </Tab>
-        <EndContainer>
-            <IconWrapper>
-                <MdReadMore />
-                <span className="endText">Learn More About our Faculty</span>
-            </IconWrapper>
-            <IconWrapper>
-                <MdPlaylistAddCheck />
-                <span className="endText">Get the latest news</span>
-            </IconWrapper> 
-        </EndContainer>
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
+      <Tab>
+        <IconWrapper>
+          <MdHome />
+        </IconWrapper>
+        <p className="text">HOME</p>
+      </Tab>
+      <Tab>
+        <IconWrapper>
+          <MdContactMail />
+        </IconWrapper>
+        <p className="text">CONTACT</p>
+      </Tab>
+      <Tab>
+        <IconWrapper>
+          <MdMenuBook />
+        </IconWrapper>
+        <p className="text">ABOUT</p>
+        <DownWrapper onClick={handleAboutClick}>
+          <MdArrowDropDown className="icon" />
+        </DownWrapper>
+        {showAbout && (
+          <Drawer>
+            <div className="about">
+              <h2>About</h2>
+            </div>
+          </Drawer>
+        )}
+      </Tab>
+      <Tab>
+        <IconWrapper>
+          <MdContactSupport />
+        </IconWrapper>
+        <p className="text">SUPPORT</p>
+        <DownWrapper onClick={handleSupportClick}>
+          <MdArrowDropDown className="icon" />
+        </DownWrapper>
+        {showSupport && (
+          <Drawer>
+            <div className="support">
+              <h2>Support</h2>
+            </div>
+          </Drawer>
+        )}
+      </Tab>
+      <EndContainer>
+        <IconWrapper>
+          <MdReadMore />
+          <span className="endText">Learn More About our Faculty</span>
+        </IconWrapper>
+        <IconWrapper>
+          <MdPlaylistAddCheck />
+          <span className="endText">Get the latest news</span>
+        </IconWrapper>
+      </EndContainer>
     </Main>
-  ) 
+  );
 }
