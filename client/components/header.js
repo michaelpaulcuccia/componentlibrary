@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import Image from "next/image";
 import styled from "styled-components";
 import {
   MdHome,
@@ -12,7 +11,6 @@ import {
 } from "react-icons/md";
 import * as palette from "../constants/palette";
 import Logo from "./logo";
-//import helpdesk from "../public/images/help-desk.svg";
 
 //ORGANISM - 1
 
@@ -37,6 +35,7 @@ const LogoContainer = styled.div`
   align-items: center;
   background: ${palette.GRAYSWIRL};
   color: black;
+  position: relative;
 
   @media (max-width: 875px) {
     width: 100%;
@@ -150,6 +149,31 @@ const Drawer = styled.div`
   }
 `;
 
+//MOBILE
+const Hamburger = styled.div`
+  display: none;
+
+  @media (max-width: 875px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 75px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+
+    div {
+      width: 65%;
+      border-bottom: 3px solid ${palette.WUGOLD};
+      padding-bottom: 8px;
+    }
+  }
+`;
+
 export default function header() {
   const [showAbout, setShowAbout] = useState(false);
   const [showSupport, setShowSupport] = useState(false);
@@ -170,10 +194,19 @@ export default function header() {
     setShowSupport(!showSupport);
   };
 
+  const handleBurgerClick = () => {
+    console.log("burger!");
+  };
+
   return (
     <Main>
       <LogoContainer>
         <Logo />
+        <Hamburger onClick={handleBurgerClick}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </Hamburger>
       </LogoContainer>
       <Tab>
         <IconWrapper>
