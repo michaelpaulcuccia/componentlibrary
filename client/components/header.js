@@ -177,6 +177,7 @@ const Hamburger = styled.div`
 export default function header() {
   const [showAbout, setShowAbout] = useState(false);
   const [showSupport, setShowSupport] = useState(false);
+  const [showMobile, setShowMobile] = useState(true);
 
   const handleAboutClick = () => {
     console.log("about click!");
@@ -196,6 +197,7 @@ export default function header() {
 
   const handleBurgerClick = () => {
     console.log("burger!");
+    setShowMobile(!showMobile);
   };
 
   return (
@@ -208,60 +210,64 @@ export default function header() {
           <div></div>
         </Hamburger>
       </LogoContainer>
-      <Tab>
-        <IconWrapper>
-          <MdHome />
-        </IconWrapper>
-        <p className="text">HOME</p>
-      </Tab>
-      <Tab>
-        <IconWrapper>
-          <MdContactMail />
-        </IconWrapper>
-        <p className="text">CONTACT</p>
-      </Tab>
-      <Tab>
-        <IconWrapper>
-          <MdMenuBook />
-        </IconWrapper>
-        <p className="text">ABOUT</p>
-        <DownWrapper onClick={handleAboutClick}>
-          <MdArrowDropDown className="icon" />
-        </DownWrapper>
-        {showAbout && (
-          <Drawer>
-            <div className="about">
-              <h2>About</h2>
-            </div>
-          </Drawer>
-        )}
-      </Tab>
-      <Tab>
-        <IconWrapper>
-          <MdContactSupport />
-        </IconWrapper>
-        <p className="text">SUPPORT</p>
-        <DownWrapper onClick={handleSupportClick}>
-          <MdArrowDropDown className="icon" />
-        </DownWrapper>
-        {showSupport && (
-          <Drawer>
-            <div className="support">
-              <h2>Support</h2>
-            </div>
-          </Drawer>
-        )}
-      </Tab>
-      <EndContainer>
-        <IconWrapper>
-          <MdReadMore />
-          <span className="endText">Learn More About our Faculty</span>
-        </IconWrapper>
-        <IconWrapper>
-          <MdPlaylistAddCheck />
-          <span className="endText">Get the latest news</span>
-        </IconWrapper>
-      </EndContainer>
+      {showMobile && (
+        <>
+          <Tab>
+            <IconWrapper>
+              <MdHome />
+            </IconWrapper>
+            <p className="text">HOME</p>
+          </Tab>
+          <Tab>
+            <IconWrapper>
+              <MdContactMail />
+            </IconWrapper>
+            <p className="text">CONTACT</p>
+          </Tab>
+          <Tab>
+            <IconWrapper>
+              <MdMenuBook />
+            </IconWrapper>
+            <p className="text">ABOUT</p>
+            <DownWrapper onClick={handleAboutClick}>
+              <MdArrowDropDown className="icon" />
+            </DownWrapper>
+            {showAbout && (
+              <Drawer>
+                <div className="about">
+                  <h2>About</h2>
+                </div>
+              </Drawer>
+            )}
+          </Tab>
+          <Tab>
+            <IconWrapper>
+              <MdContactSupport />
+            </IconWrapper>
+            <p className="text">SUPPORT</p>
+            <DownWrapper onClick={handleSupportClick}>
+              <MdArrowDropDown className="icon" />
+            </DownWrapper>
+            {showSupport && (
+              <Drawer>
+                <div className="support">
+                  <h2>Support</h2>
+                </div>
+              </Drawer>
+            )}
+          </Tab>
+          <EndContainer>
+            <IconWrapper>
+              <MdReadMore />
+              <span className="endText">Learn More About our Faculty</span>
+            </IconWrapper>
+            <IconWrapper>
+              <MdPlaylistAddCheck />
+              <span className="endText">Get the latest news</span>
+            </IconWrapper>
+          </EndContainer>
+        </>
+      )}
     </Main>
   );
 }
