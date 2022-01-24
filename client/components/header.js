@@ -12,6 +12,11 @@ import {
 import * as palette from "../constants/palette";
 import Logo from "./logo";
 
+/*
+  desktop view - min-width: 870px;
+  mobile view - max-width: 869px;
+*/
+
 //ORGANISM - 1
 
 const Main = styled.div`
