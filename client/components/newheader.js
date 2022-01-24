@@ -8,6 +8,7 @@ import {
   MdReadMore,
   MdPlaylistAddCheck,
   MdArrowDropDown,
+  MdArrowRight
 } from "react-icons/md";
 import * as palette from "../constants/palette";
 import Logo from "./logo";
@@ -171,6 +172,11 @@ const MobileTab = styled.div`
   align-items: center;
   background: ${palette.GRAYSWIRL};
   color: black;
+
+  .flex-row {
+    display: flex;
+    align-items: baseline;
+  }
 
   .text {
     padding-top: 10px;
@@ -340,8 +346,10 @@ export default function header() {
                         <MobileIconWrapper>
                             <MdMenuBook />
                         </MobileIconWrapper>
-                        <p className="text">ABOUT</p>
-                        <MdArrowDropDown className="icon" />
+                        <div className="flex-row">
+                            <p className="text">ABOUT</p>
+                            <MdArrowRight className="icon" />
+                        </div>
                         {showAbout && (
                         <Drawer>
                             <div className="about">
@@ -354,8 +362,10 @@ export default function header() {
                         <MobileIconWrapper>
                             <MdContactSupport />
                         </MobileIconWrapper>
-                        <p className="text">SUPPORT</p>
-                        <MdArrowDropDown className="icon" />
+                        <div className="flex-row">
+                            <p className="text">SUPPORT</p>
+                            <MdArrowRight className="icon" />
+                        </div>
                         {showSupport && (
                         <Drawer>
                             <div className="support">
