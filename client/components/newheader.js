@@ -224,8 +224,10 @@ const Hamburger = styled.div`
 `;
 
 export default function header() {
+
   const [showAbout, setShowAbout] = useState(false);
   const [showSupport, setShowSupport] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const handleAboutClick = () => {
     console.log("about click!");
@@ -245,6 +247,7 @@ export default function header() {
 
   const handleBurgerClick = () => {
     console.log("burger!");
+    setShowMobileMenu(!showMobileMenu);
   };
 
   return (
@@ -318,56 +321,61 @@ export default function header() {
                     <div></div>
                 </Hamburger>
             </MobileLogoContainer>
-            <MobileTab>
-                <MobileIconWrapper>
-                    <MdHome />
-                </MobileIconWrapper>
-                <p className="text">HOME</p>
-            </MobileTab>
-            <MobileTab>
-                <MobileIconWrapper>
-                    <MdContactMail />
-                </MobileIconWrapper>
-                <p className="text">CONTACT</p>
-            </MobileTab>
-            <MobileTab onClick={handleAboutClick}>
-                <MobileIconWrapper>
-                    <MdMenuBook />
-                </MobileIconWrapper>
-                <p className="text">ABOUT</p>
-                <MdArrowDropDown className="icon" />
-                {showAbout && (
-                <Drawer>
-                    <div className="about">
-                    <h2>About</h2>
-                    </div>
-                </Drawer>
-                )}
-            </MobileTab>
-            <MobileTab onClick={handleSupportClick}>
-                <MobileIconWrapper>
-                    <MdContactSupport />
-                </MobileIconWrapper>
-                <p className="text">SUPPORT</p>
-                <MdArrowDropDown className="icon" />
-                {showSupport && (
-                <Drawer>
-                    <div className="support">
-                    <h2>Support</h2>
-                    </div>
-                </Drawer>
-                )}
-            </MobileTab>
-            <MobileEndContainer>
-                <MobileIconWrapper>
-                    <MdReadMore />
-                    <span className="endText">Learn More About our Faculty</span>
-                </MobileIconWrapper>
-                <MobileIconWrapper>
-                    <MdPlaylistAddCheck />
-                    <span className="endText">Get the latest news</span>
-                </MobileIconWrapper>
-            </MobileEndContainer>
+            {
+                showMobileMenu &&
+                <>
+                    <MobileTab>
+                        <MobileIconWrapper>
+                            <MdHome />
+                        </MobileIconWrapper>
+                        <p className="text">HOME</p>
+                    </MobileTab>
+                    <MobileTab>
+                        <MobileIconWrapper>
+                            <MdContactMail />
+                        </MobileIconWrapper>
+                        <p className="text">CONTACT</p>
+                    </MobileTab>
+                    <MobileTab onClick={handleAboutClick}>
+                        <MobileIconWrapper>
+                            <MdMenuBook />
+                        </MobileIconWrapper>
+                        <p className="text">ABOUT</p>
+                        <MdArrowDropDown className="icon" />
+                        {showAbout && (
+                        <Drawer>
+                            <div className="about">
+                            <h2>About</h2>
+                            </div>
+                        </Drawer>
+                        )}
+                    </MobileTab>
+                    <MobileTab onClick={handleSupportClick}>
+                        <MobileIconWrapper>
+                            <MdContactSupport />
+                        </MobileIconWrapper>
+                        <p className="text">SUPPORT</p>
+                        <MdArrowDropDown className="icon" />
+                        {showSupport && (
+                        <Drawer>
+                            <div className="support">
+                            <h2>Support</h2>
+                            </div>
+                        </Drawer>
+                        )}
+                    </MobileTab>
+                    <MobileEndContainer>
+                        <MobileIconWrapper>
+                            <MdReadMore />
+                            <span className="endText">Learn More About our Faculty</span>
+                        </MobileIconWrapper>
+                        <MobileIconWrapper>
+                            <MdPlaylistAddCheck />
+                            <span className="endText">Get the latest news</span>
+                        </MobileIconWrapper>
+                    </MobileEndContainer>
+                </>
+            }
         </MobileView>
     </>
   );
