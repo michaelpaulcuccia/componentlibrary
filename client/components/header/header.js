@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from 'next/image';
 import styled from "styled-components";
 import {
   MdHome,
@@ -12,6 +13,7 @@ import {
 import MobileHeader from './mobileheader';
 import * as palette from "../../constants/palette";
 import Logo from "../logo";
+import helpdesk from '../../public/images/help-desk.svg';
 
 //ORGANISM - 1
 
@@ -107,7 +109,6 @@ const DownWrapper = styled.span`
 `;
 
 const Drawer = styled.div`
-  height: 250px;
   width: 350px;
   border-radius: 5px;
   border: solid 1px ${palette.WUGOLD};
@@ -115,19 +116,74 @@ const Drawer = styled.div`
   position: absolute;
   top: 165px;
   right: 25%;
+  display: flex;
+
+  ul {
+    list-style-type: none;
+  }
 
   .about {
     display: flex;
-    justify-content: flex-start;
-    color: blue;
-    padding: 8px 5px;
+    flex-direction: column;
+    align-items: flex-start;    
+    width: 55%;
+
+    h2 {
+      color: ${palette.WUGOLD};
+      text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
+      padding-left: 15px;
+      padding-bottom: 5px;
+      &:first-of-type{
+        padding-top: 5px;
+      }
+    }
+
+    ul {
+      li {
+        font-size: 18px;
+        font-weight: 400;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.25);
+        padding-left: 20px;
+        padding-bottom: 3px;
+        &:last-child{
+          padding-bottom: 8px;
+        }
+      }
+    }
+  }
+
+  .image-container {
+    width: 45%;
+    padding: 10%;
   }
 
   .support {
+    margin-left: auto;
     display: flex;
-    justify-content: flex-end;
-    color: red;
-    padding: 8px 5px;
+    flex-direction: column;
+
+    h2 {
+      color: ${palette.WUGOLD};
+      text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
+      padding-right: 15px;
+      padding-bottom: 5px;
+      &:first-of-type{
+        padding-top: 5px;
+      }
+    }
+
+    ul {
+      li {
+        font-size: 18px;
+        font-weight: 400;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.25);
+        padding-right: 20px;
+        padding-bottom: 3px;
+        &:last-child{
+          padding-bottom: 8px;
+        }
+      }
+    }
   }
 `;
 
@@ -196,7 +252,23 @@ export default function header() {
             {showAbout && (
               <Drawer>
                 <div className="about">
-                  <h2>About</h2>
+                  <h2>Services</h2>
+                    <ul>
+                      <li>Consulting</li>
+                      <li>Audit & Assurance</li>
+                      <li>Risk Advisory</li>
+                      <li>Legal</li>
+                    </ul>
+                  <h2>Insights</h2>
+                    <ul>
+                      <li>Strategy</li>
+                      <li>Technology</li>
+                      <li>Industries</li>
+                      <li>Spotlight</li>
+                    </ul>
+                </div>
+                <div className="image-container">
+                  <Image src={helpdesk} height={87} width={87}/>
                 </div>
               </Drawer>
             )}
@@ -212,7 +284,12 @@ export default function header() {
                 {showSupport && (
                 <Drawer>
                     <div className="support">
-                    <h2>Support</h2>
+                        <h2>Support</h2>
+                        <ul>
+                          <li>Existing Clients</li>
+                          <li>Enlisting Our Services</li>
+                          <li>Tips</li>
+                        </ul>
                     </div>
                 </Drawer>
                 )}
