@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import NewHeader from '../components/newheader';
+import Header from '../components/header/header';
 
 const AppContainer = styled.div`
   max-width: 1920px;
@@ -19,7 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NewHeader />
+      <Header />
     </AppContainer>
  
 
