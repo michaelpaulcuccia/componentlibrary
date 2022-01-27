@@ -12,6 +12,10 @@ import {
 import * as palette from "../../constants/palette";
 import Logo from "../logo";
 
+const RelativeWrapper = styled.div`
+  position: relative;
+`;
+
 const MobileLogoContainer = styled.div`
   width: 100%;
   display: flex;
@@ -21,6 +25,28 @@ const MobileLogoContainer = styled.div`
   background: ${palette.GRAYSWIRL};
   color: black;
   position: relative;
+  transition: width: 5s;
+`;
+
+const Hamburger = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 75px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+
+    div {
+      width: 65%;
+      border-bottom: 3px solid ${palette.WUGOLD};
+      padding-bottom: 8px;
+    }
+  }
 `;
 
 const MobileTab = styled.div`
@@ -35,7 +61,7 @@ const MobileTab = styled.div`
 
   .flex-row {
     display: flex;
-    align-items: baseline;
+    align-items: flex-end;
   }
 
   .text {
@@ -68,32 +94,37 @@ const MobileIconWrapper = styled.span`
   }
 `;
 
-const Hamburger = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    width: 75px;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    cursor: pointer;
+const Drawer = styled.div`
+  width: 100%;
+  border: 3px solid ${palette.WUGOLD};
+  background: ${palette.GRAYSWIRL}; 
+  box-shadow: 0px 20px 15px 5px #fff;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  text-align: center;
 
-    div {
-      width: 65%;
-      border-bottom: 3px solid ${palette.WUGOLD};
-      padding-bottom: 8px;
+  h2 {
+      padding-bottom: 3px;
+      color: ${palette.WUGOLD};
+      text-shadow: 1px 1px 1px rgba(108,192,74,0.45);
+  }
+ 
+  ul {
+    list-style-type: none;
+    li{
+      padding-bottom: 3px;
+      text-shadow: 1px 1px 1px rgba(0,0,0,.25);
     }
   }
 `;
+
 
 export default function mobileheader() {
 
     const [showMobileAbout, setShowMobileAbout] = useState(false);
     const [showMobileSupport, setShowMobileSupport] = useState(false);
-    const [showMobileMenu, setShowMobileMenu] = useState(false)
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
   
     const handleAboutClick = () => {
       console.log("about click!");
@@ -108,7 +139,7 @@ export default function mobileheader() {
       if (showMobileAbout) {
         setShowMobileAbout(false);
       }
-      setShowMobileSupport(!showMobileSupport);
+      setShowMobileSupport(!showMobileSupport)
     };
   
     const handleBurgerClick = () => {
@@ -117,7 +148,7 @@ export default function mobileheader() {
     };
 
   return (
-    <>
+    <RelativeWrapper>
         <MobileLogoContainer>
             <Logo />
             <Hamburger onClick={handleBurgerClick}>
@@ -150,9 +181,22 @@ export default function mobileheader() {
                 <MdArrowRight className="icon" />
             </div>
                 {showMobileAbout && (
-                    <div className="about">
-                        <h2>About</h2>
-                    </div> 
+                    <Drawer>
+                      <h2>Services</h2>
+                        <ul>
+                          <li>Consulting</li>
+                          <li>Audit & Assurance</li>
+                          <li>Risk Advisory</li>
+                          <li>Legal</li>
+                        </ul>
+                      <h2>Insights</h2>
+                        <ul>
+                          <li>Strategy</li>
+                          <li>Technology</li>
+                          <li>Industries</li>
+                          <li>Spotlight</li>
+                      </ul>
+                    </Drawer> 
                 )}
         </MobileTab>
         <MobileTab onClick={handleSupportClick}>
@@ -164,9 +208,14 @@ export default function mobileheader() {
                 <MdArrowRight className="icon" />
             </div>
                 {showMobileSupport && (
-                    <div className="support">
-                        <h2>Support</h2>
-                    </div>
+                    <Drawer>
+                      <h2>Support</h2>
+                        <ul>
+                          <li>Existing Clients</li>
+                          <li>Our Services</li>
+                          <li>Tips</li>
+                        </ul>
+                    </Drawer>
                 )}
         </MobileTab>
         <MobileEndContainer>
@@ -181,6 +230,6 @@ export default function mobileheader() {
         </MobileEndContainer>
         </>
       }
-    </>
+    </RelativeWrapper>
   ) 
 }
