@@ -120,7 +120,7 @@ const Drawer = styled.div`
 `;
 
 
-export default function mobileheader() {
+export default function Mobileheader() {
 
     const [showMobileAbout, setShowMobileAbout] = useState(false);
     const [showMobileSupport, setShowMobileSupport] = useState(false);

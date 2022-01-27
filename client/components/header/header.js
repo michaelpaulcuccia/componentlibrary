@@ -198,7 +198,7 @@ const MobileView = styled.div`
 `;
 
 
-export default function header() {
+export default function Header() {
 
   const [showAbout, setShowAbout] = useState(false);
   const [showSupport, setShowSupport] = useState(false);
